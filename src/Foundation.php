@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Foundation extends Container
 {
     /**
-     * An array of service providers
+     * An array of service providers.
      *
      * @var
      */
@@ -38,7 +38,7 @@ class Foundation extends Container
     }
 
     /**
-     * Register providers
+     * Register providers.
      */
     public function registerProviders()
     {
@@ -48,7 +48,7 @@ class Foundation extends Container
     }
 
     /**
-     * Register basic providers
+     * Register basic providers.
      */
     public function registerBase()
     {
@@ -66,7 +66,7 @@ class Foundation extends Container
     }
 
     /**
-     * Initialize logger
+     * Initialize logger.
      */
     public function initializeLogger()
     {
@@ -93,9 +93,9 @@ class Foundation extends Container
     }
 
     /**
-     * Magic get access
+     * Magic get access.
      *
-     * @param  string  $id
+     * @param string $id
      *
      * @return mixed
      */
@@ -105,7 +105,7 @@ class Foundation extends Container
     }
 
     /**
-     * Magic set access
+     * Magic set access.
      *
      * @param string $id
      * @param mixed  $value

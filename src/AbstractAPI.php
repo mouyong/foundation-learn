@@ -7,21 +7,21 @@ use Psr\Http\Message\RequestInterface;
 abstract class AbstractAPI
 {
     /**
-     * Http instance
+     * Http instance.
      *
      * @var Http
      */
     protected $http;
 
     /**
-     * Return Http
+     * Return Http.
      *
      * @return Http
      */
     public function getHttp()
     {
         if (is_null($this->http)) {
-            $this->http = new Http;
+            $this->http = new Http();
         }
 
         if (count($this->http->getMiddlewares()) === 0) {
@@ -32,9 +32,9 @@ abstract class AbstractAPI
     }
 
     /**
-     * Add headers
+     * Add headers.
      *
-     * @param  mixed $headers
+     * @param mixed $headers
      *
      * @return \Closure
      */
@@ -45,15 +45,16 @@ abstract class AbstractAPI
                 foreach ($headers as $key => $header) {
                     $request = $request->withHeader($key, $header);
                 }
+
                 return $handler($request, $options);
             };
         };
     }
 
     /**
-     * Push guzzle middleware before request
+     * Push guzzle middleware before request.
      *
      * @return mixed
      */
-    abstract function middlewares();
+    abstract public function middlewares();
 }
