@@ -10,21 +10,21 @@ use Psr\Http\Message\ResponseInterface;
 class Http
 {
     /**
-     * Http Client
+     * Http Client.
      *
      * @var HttpClient
      */
     protected $client;
 
     /**
-     * The middlewares
+     * The middlewares.
      *
      * @var array
      */
     protected $middlewares = [];
 
     /**
-     * Guzzle client default settings
+     * Guzzle client default settings.
      *
      * @var array
      */
@@ -35,7 +35,7 @@ class Http
     ];
 
     /**
-     * Set guzzle default settions
+     * Set guzzle default settions.
      *
      * @param array $defaults
      */
@@ -45,7 +45,7 @@ class Http
     }
 
     /**
-     * Return current guzzle default settions
+     * Return current guzzle default settions.
      *
      * @return array
      */
@@ -55,10 +55,10 @@ class Http
     }
 
     /**
-     * GET request
+     * GET request.
      *
-     * @param  string $url
-     * @param  array  $query
+     * @param string $url
+     * @param array  $query
      *
      * @return ResponseInterface
      *
@@ -70,10 +70,10 @@ class Http
     }
 
     /**
-     * POST request
+     * POST request.
      *
-     * @param  string $url
-     * @param  array  $form_params
+     * @param string $url
+     * @param array  $form_params
      *
      * @return ResponseInterface
      *
@@ -85,10 +85,10 @@ class Http
     }
 
     /**
-     * JSON request
+     * JSON request.
      *
-     * @param  string $url
-     * @param  array  $json
+     * @param string $url
+     * @param array  $json
      *
      * @return ResponseInterface
      *
@@ -100,12 +100,12 @@ class Http
     }
 
     /**
-     * Upload file
+     * Upload file.
      *
      * @param string $url
-     * @param array $files
-     * @param array $form
-     * @param array $queries
+     * @param array  $files
+     * @param array  $form
+     * @param array  $queries
      *
      * @return ResponseInterface
      */
@@ -113,14 +113,14 @@ class Http
     {
         $multipart = [];
         foreach ($files as $name => $path) {
-            if (is_array($path)){
+            if (is_array($path)) {
                 foreach ($path as $item) {
                     $multipart[] = [
-                        'name' => $name . '[]',
+                        'name' => $name.'[]',
                         'contents' => fopen($item, 'r'),
                     ];
                 }
-            }else{
+            } else {
                 $multipart[] = [
                     'name' => $name,
                     'contents' => fopen($path, 'r'),
@@ -130,11 +130,12 @@ class Http
         foreach ($form as $name => $contents) {
             $multipart[] = compact('name', 'contents');
         }
+
         return $this->request($url, 'POST', array_merge(['query' => $queries], 'multipart'));
     }
 
     /**
-     * Set GuzzleHttp\Client
+     * Set GuzzleHttp\Client.
      *
      * @param \GuzzleHttp\Client $client
      *
@@ -143,11 +144,12 @@ class Http
     public function setClient(HttpClient $client)
     {
         $this->client = $client;
+
         return $this;
     }
 
     /**
-     * Return \GuzzleHttp\Client instance
+     * Return \GuzzleHttp\Client instance.
      *
      * @return \GuzzleHttp\Client
      */
@@ -156,17 +158,19 @@ class Http
         if (!($this->client instanceof HttpClient)) {
             $this->client = new HttpClient();
         }
+
         return $this->client;
     }
 
     public function addMiddleware(callable $middleware)
     {
         array_push($this->middlewares, $middleware);
+
         return $this;
     }
 
     /**
-     * Return all middlewares
+     * Return all middlewares.
      *
      * @return array
      */
@@ -176,7 +180,7 @@ class Http
     }
 
     /**
-     * Build a handler
+     * Build a handler.
      *
      * @return HandlerStack
      */
@@ -195,11 +199,11 @@ class Http
     }
 
     /**
-     * Make a request
+     * Make a request.
      *
-     * @param  string $url
-     * @param  string $method
-     * @param  array  $options
+     * @param string $url
+     * @param string $method
+     * @param array  $options
      *
      * @return ResponseInterface
      */

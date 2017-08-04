@@ -8,7 +8,7 @@ use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class Log
+ * Class Log.
  *
  * @method static debug($message, $context = null)
  * @method static info($message, $context = null)
@@ -29,7 +29,7 @@ class Log
     protected static $logger;
 
     /**
-     * Make a default log instance
+     * Make a default log instance.
      *
      * @return \Monolog\Logger
      */
@@ -41,11 +41,12 @@ class Log
         } else {
             $log->pushHandler(new ErrorLogHandler());
         }
+
         return $log;
     }
 
     /**
-     * Return the logger instance
+     * Return the logger instance.
      *
      * @return \Psr\Log\LoggerInterface
      */
@@ -55,7 +56,7 @@ class Log
     }
 
     /**
-     * Set logger
+     * Set logger.
      *
      * @param \Psr\Log\LoggerInterface $logger
      */
@@ -65,7 +66,7 @@ class Log
     }
 
     /**
-     * Return true if logger exists
+     * Return true if logger exists.
      *
      * @return bool
      */
@@ -75,7 +76,7 @@ class Log
     }
 
     /**
-     * Forward call
+     * Forward call.
      *
      * @param string $method
      * @param array  $args
@@ -88,7 +89,7 @@ class Log
     }
 
     /**
-     * Forward call
+     * Forward call.
      *
      * @param string $method
      * @param array  $args

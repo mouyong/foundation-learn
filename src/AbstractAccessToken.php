@@ -8,49 +8,49 @@ use Doctrine\Common\Cache\FilesystemCache;
 abstract class AbstractAccessToken
 {
     /**
-     * App ID
+     * App ID.
      *
      * @var string
      */
     protected $appId;
 
     /**
-     * App secret
+     * App secret.
      *
      * @var string
      */
     protected $secret;
 
     /**
-     * Cache key
+     * Cache key.
      *
      * @var string
      */
     protected $cacheKey;
 
     /**
-     * Cache
+     * Cache.
      *
      * @var Cache
      */
     protected $cache;
 
     /**
-     * Cache key prefix
+     * Cache key prefix.
      *
      * @var string
      */
     protected $prefix;
 
     /**
-     * Response Json key name of token
+     * Response Json key name of token.
      *
      * @var string
      */
     protected $tokenJsonKey;
 
     /**
-     * Response Json key name of expires in
+     * Response Json key name of expires in.
      *
      * @var string
      */
@@ -62,7 +62,7 @@ abstract class AbstractAccessToken
     protected $http;
 
     /**
-     * Token string
+     * Token string.
      *
      * @var string
      */
@@ -70,7 +70,8 @@ abstract class AbstractAccessToken
 
     /**
      * @param mixed $token
-     * @param int $expires  default value one day
+     * @param int   $expires default value one day
+     *
      * @return $this
      */
     public function setToken($token, $expires = 86400)
@@ -79,13 +80,14 @@ abstract class AbstractAccessToken
             $this->getCache()->save($this->getCacheKey(), $token, $expires);
         }
         $this->token = $token;
+
         return $this;
     }
 
     /**
-     * Get token from cache
+     * Get token from cache.
      *
-     * @param  boolean $forceRefresh
+     * @param bool $forceRefresh
      *
      * @return string
      */
@@ -108,16 +110,17 @@ abstract class AbstractAccessToken
     }
 
     /**
-     * Get token from remote server
+     * Get token from remote server.
      *
      * @return mixed
      */
     abstract public function getTokenFromServer();
 
     /**
-     * Throw exception if token is invalid
+     * Throw exception if token is invalid.
      *
      * @param $result
+     *
      * @return mixed
      */
     abstract public function checkTokenResponse($result);
@@ -155,7 +158,7 @@ abstract class AbstractAccessToken
     }
 
     /**
-     * Set cache instance
+     * Set cache instance.
      *
      * @param \Doctrine\Common\Cache\Cache $cache
      *
@@ -164,11 +167,12 @@ abstract class AbstractAccessToken
     public function setCache(Cache $cache)
     {
         $this->cache = $cache;
+
         return $this;
     }
 
     /**
-     * Return the cache manager
+     * Return the cache manager.
      *
      * @return \Doctrine\Common\Cache\Cache
      */
@@ -180,13 +184,14 @@ abstract class AbstractAccessToken
     public function getCacheKey()
     {
         if (is_null($this->cacheKey)) {
-            return $this->prefix . $this->appId;
+            return $this->prefix.$this->appId;
         }
+
         return $this->cacheKey;
     }
 
     /**
-     * Return the Http instance
+     * Return the Http instance.
      *
      * @return Http
      */
@@ -196,7 +201,7 @@ abstract class AbstractAccessToken
     }
 
     /**
-     * Set the Http instance
+     * Set the Http instance.
      *
      * @param Http $http
      *
@@ -205,6 +210,7 @@ abstract class AbstractAccessToken
     public function setHttp(Http $http)
     {
         $this->http = $http;
+
         return $this;
     }
 }
