@@ -1,0 +1,23 @@
+{
+    "name": "cole/foundation",
+    "description": "参考 hanson/foundation-sdk 练习而做的 foundation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "牟勇",
+            "email": "my24251325@gmail.com"
+        }
+    ],
+    "require": {
+        "pimple/pimple": "^3.2",
+        "illuminate/support": "^5.4",
+        "monolog/monolog": "^1.23",
+        "symfony/http-foundation": "^3.3",
+        "doctrine/cache": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cole\\Foundation\\": "src/"
+        }
+    }
+}
