@@ -1,5 +1,5 @@
 
-[![StyleCI](https://styleci.io/repos/99321011/shield?branch=cole)](https://styleci.io/repos/99321011)
+[![StyleCI](https://styleci.io/repos/99330085/shield?branch=master)](https://styleci.io/repos/99330085)
 
 ## Foundation
 
